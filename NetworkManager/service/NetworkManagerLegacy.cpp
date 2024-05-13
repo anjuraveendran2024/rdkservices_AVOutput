@@ -18,7 +18,7 @@
 **/
 
 #include "NetworkManager.h"
-#include "NetworkConnectivity.h"
+#include "NetworkManagerConnectivity.h"
 #include <algorithm>
 
 #define LOGINFOMETHOD() { std::string json; parameters.ToString(json); NMLOG_TRACE("Legacy params=%s", json.c_str() ); }

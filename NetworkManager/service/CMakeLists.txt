@@ -32,7 +32,11 @@ endif ()
 
 message("Setup ${PROJECT_NAME} v${PROJECT_VERSION}")
 
-set(PLUGIN_NETWORKMANAGER_LOGLEVEL "5" CACHE STRING "To configure default loglevel NetworkManager plugin")
+set(PLUGIN_NETWORKMANAGER_CONN_MONITOR_ENDPOINT_1 "http://clients3.google.com/generate_204" CACHE STRING "To configure default connectivity monitor endpoint")
+set(PLUGIN_NETWORKMANAGER_CAPTIVE_ENDPOINT_1 "http://clients3.google.com/generate_204" CACHE STRING "To configure default captive portal endpoint")
+set(PLUGIN_NETWORKMANAGER_STUN_ENDPOINT "stun.l.google.com" CACHE STRING "To configure default stdun endpoint")
+set(PLUGIN_NETWORKMANAGER_STUN_PORT "19302" CACHE STRING "To configure default stun server port")
+set(PLUGIN_NETWORKMANAGER_LOGLEVEL "5" CACHE STRING "To configure default loglevel NetworkManager plugin to trace")
 
 # Build the main plugin that runs inside the WPEFramework daemon
 add_library(${MODULE_NAME} SHARED
@@ -69,7 +73,7 @@ install(TARGETS ${MODULE_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/${STORAGE
 # Build the implementation that runs out-of-process behind a COM-RPC interface
 add_library(${PLUGIN_IMPLEMENTATION} SHARED
         NetworkManagerImplementation.cpp
-        NetworkConnectivity.cpp
+        NetworkManagerConnectivity.cpp
         NetworkManagerLogger.cpp
         StunClient.cpp
         WifiSignalStrengthMonitor.cpp

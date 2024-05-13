@@ -34,7 +34,6 @@
 
 namespace NetworkManagerLogger {
     static LogLevel gDefaultLogLevel = TRACE_LEVEL;
-
     const char* methodName(const std::string& prettyFunction)
     {
         size_t colons = prettyFunction.find("::");
@@ -83,7 +82,7 @@ namespace NetworkManagerLogger {
         gettimeofday(&tv, NULL);
         lt = localtime(&tv.tv_sec);
 
-        printf("%.2d:%.2d:%.2d.%.6lld %-10s %s %s:%d : %s\n", lt->tm_hour, lt->tm_min, lt->tm_sec, (long long int)tv.tv_usec, levelMap[level], basename(file), func, line, formattedLog);
+        printf("%.2d:%.2d:%.2d.%.6lld %-6s [PID:%d][TID:%d] %s %s:%d : %s\n", lt->tm_hour, lt->tm_min, lt->tm_sec, (long long int)tv.tv_usec, levelMap[level], PROCESS_ID, THREAD_ID, basename(file), func, line, formattedLog);
         fflush(stdout);
 #endif
     }

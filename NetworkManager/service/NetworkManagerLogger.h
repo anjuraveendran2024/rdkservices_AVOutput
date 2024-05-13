@@ -29,6 +29,16 @@
 #include "Module.h"
 
 namespace NetworkManagerLogger {
+
+#define PROCESS_ID ::getpid()
+#if __GLIBC__ == 2 && __GLIBC_MINOR__ < 30
+#include <sys/syscall.h>
+#define TRACE_THREAD_ID syscall(SYS_gettid)
+#else
+#include <unistd.h>
+#define THREAD_ID ::gettid()
+#endif
+
 /**
  * Logging level with an increasing order of refinement
  * (TRACE_LEVEL = Finest logging)

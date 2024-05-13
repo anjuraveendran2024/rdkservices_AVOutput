@@ -94,6 +94,7 @@ namespace WPEFramework
 
         void WifiSignalStrengthMonitor::startWifiSignalStrengthMonitor(int interval)
         {
+
             stopThread = false;
             if (isRunning) {
                 NMLOG_INFO("WifiSignalStrengthMonitor Thread is already running.");
@@ -103,7 +104,7 @@ namespace WPEFramework
             monitorThread = std::thread(&WifiSignalStrengthMonitor::monitorThreadFunction, this, interval);
             monitorThread.detach();
             std::thread::id threadId = monitorThread.get_id();
-            NMLOG_INFO("Thread started with interval: %d seconds. Thread ID: %lu", interval);
+            NMLOG_INFO("Thread started with interval: %d seconds", interval);
         }
 
         void WifiSignalStrengthMonitor::monitorThreadFunction(int interval)
