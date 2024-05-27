@@ -97,8 +97,8 @@ namespace WPEFramework
 
                     StunConf()
                         : Core::JSON::Container()
-                        , stunEndpoint(_T(""))
-                        , port(19310)
+                        , stunEndpoint(_T("stun.l.google.com"))
+                        , port(19302)
                         , interval(30)
                     {
                         Add(_T("endpoint"), &stunEndpoint);
